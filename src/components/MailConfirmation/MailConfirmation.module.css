@@ -1,0 +1,22 @@
+
+
+.loginForm{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+    
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 7rem;
+    gap: 1.5rem;
+    border: 2px solid #000;
+}
