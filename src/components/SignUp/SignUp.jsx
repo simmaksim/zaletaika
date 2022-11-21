@@ -1,68 +1,59 @@
-import { useFormik } from 'formik';
- import * as Yup from 'yup';
- 
- export const SignUp = () => {
-   const formik = useFormik({
-     initialValues: {
-       firstName: '',
-       lastName: '',
-       email: '',
-     },
-     validationSchema: Yup.object({
-       firstName: Yup.string()
-         .max(15, 'Must be 15 characters or less')
-         .required('Required'),
-       lastName: Yup.string()
-         .max(20, 'Must be 20 characters or less')
-         .required('Required'),
-       email: Yup.string().email('Invalid email address').required('Required'),
-     }),
-     onSubmit: values => {
-       alert(JSON.stringify(values, null, 2));
-     },
-   });
-   return (
-     <form onSubmit={formik.handleSubmit}>
-       <label htmlFor="firstName">First Name</label>
-       <input
-         id="firstName"
-         name="firstName"
-         type="text"
-         onChange={formik.handleChange}
-         onBlur={formik.handleBlur}
-         value={formik.values.firstName}
-       />
-       {formik.touched.firstName && formik.errors.firstName ? (
-         <div>{formik.errors.firstName}</div>
-       ) : null}
- 
-       <label htmlFor="lastName">Last Name</label>
-       <input
-         id="lastName"
-         name="lastName"
-         type="text"
-         onChange={formik.handleChange}
-         onBlur={formik.handleBlur}
-         value={formik.values.lastName}
-       />
-       {formik.touched.lastName && formik.errors.lastName ? (
-         <div>{formik.errors.lastName}</div>
-       ) : null}
- 
-       <label htmlFor="email">Email Address</label>
-       <input
-         id="email"
-         name="email"
-         type="email"
-         onChange={formik.handleChange}
-         onBlur={formik.handleBlur}
-         value={formik.values.email}
-       />
-       {formik.touched.email && formik.errors.email ? (
-         <div>{formik.errors.email}</div>
-       ) : null}
- 
-       <button type="submit">Submit</button>
-     </form>
-   );
- };
+import classes from "./SignUp.module.css"
+import { useRef } from "react"
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Link } from "react-router-dom";
+
+export function SignUp(){
+
+    const schema = yup.object().shape({
+        email: yup.string().email().required(),
+        password: yup.string().min(8).max(32).required(),
+      });
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(schema),});
+    
+    const onSubmitHandler = (data) => {
+            console.log({ data });
+            reset();
+        };
+    
+
+    
+    
+    return (
+        <>
+            <form className={classes.signUpForm} onSubmit={handleSubmit(onSubmitHandler)}>
+                <div className={classes.signUpContainer}>
+                    <p className={classes.signUpText}>Login</p>
+                    <input className={classes.signUpInput} {...register("email")} placeholder="email" type="email" required />
+                    <p className={classes.signUpText}>Password</p>
+                    <input className={classes.signUpInput}  {...register("password")}
+                        placeholder="password"
+                        type="password"
+                        required
+                        />
+                    <p>{errors.password?.message}</p>
+                    <p className={classes.signUpText}>Confirm password</p>
+                    <input className={classes.signUpInput}  {...register("password")}
+                        placeholder="confirm password"
+                        type="password"
+                        required
+                        />
+                    <p>{errors.password?.message}</p>
+                    <p>First name</p>
+                    <input placeholder="Name" />
+                    <p>Second name</p>
+                    <input placeholder="Surname" type="Surname"/>
+                    <p>Date of birth</p>
+                    <input type="Date" />
+                    {/* <Button onclick={hello}>Hueta</Button> */}
+                    <button placeholder="dd.mm.yyyy" type="submit">Register</button>
+                    <Link to="/logIn">Already signed up? Sign In</Link>
+                </div>
+            </form>
+        </>
+    )
+}
