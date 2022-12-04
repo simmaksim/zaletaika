@@ -1,6 +1,6 @@
 
 
-.loginForm{
+.tokenForm{
     height: 100%;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@
     
 }
 
-.loginContainer{
+.tokenContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
