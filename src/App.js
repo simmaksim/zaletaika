@@ -8,6 +8,7 @@ import {TokenConf} from "./components/TokenConf/TokenConf"
 import {ResetingPassword} from "./components/ResetingPassword/ResetingPassword"
 import {StartPage} from "./components/StartPage/StartPage"
 import {Header} from "./components/Header/Header"
+import {Calculator} from "./components/Calculator/Calculator"
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/mailconfirmation" element={<MailConfirmation/>} />
           <Route path="/tokenconfrimation" element={<TokenConf/>} />
           <Route path="/resetingpassword" element={<ResetingPassword />} />
+          <Route path="/calculator" element={<Calculator />} />
           <Route path="/" element={<StartPage />} />  
         </Routes>
       </main>
