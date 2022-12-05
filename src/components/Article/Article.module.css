@@ -1,0 +1,28 @@
+.articleWrapper{
+    width: 35%;
+    border: 2px solid black;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    flex-grow: 3;
+    
+}
+
+
+
+.articleWrapper:hover{
+    background-color: black;
+    color: white;
+}
+
+.text{
+    height: 105px
+}
+
+.image{
+    width: 100%;
+}
+
+.title{
+
+}
