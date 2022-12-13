@@ -9,6 +9,8 @@ import { StartPage } from "./components/StartPage/StartPage";
 import { Header } from "./components/Header/Header";
 import { Calculator } from "./components/Calculator/Calculator";
 import { Menu } from "./components/Menu/Menu";
+import { Exercise } from "./components/Exersices/Exercises";
+import { Doctor } from "./components/Doctor/Doctor";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/resetingpassword" element={<ResetingPassword />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/exercises" element={<Exercise />} />
+          <Route path="/doctor" element={<Doctor />} />
           <Route path="/" element={<StartPage />} />
         </Routes>
       </main>

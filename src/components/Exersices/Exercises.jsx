@@ -1,14 +1,14 @@
-import classes from "./StartPage.module.css";
+import classes from "./Exercises.module.css";
 import { Modal } from "../Modal/Modal";
 import { useState } from "react";
-import { ArticleModal } from "./ArticleModal/ArticleModal";
-import { Article } from "../Article/Article";
-import { getArticles } from "../../service.js";
+import { VideoArticleModal } from "./VideoArticleModal/VideoArticleModal";
+import { VideoArticle } from "../VideoArticle/VideoArticle";
+import { getExercise } from "../../service.js";
 import { useEffect } from "react";
 
-const articles = require("../../statii.json");
+const articles = require("../../exercise.json");
 
-export function StartPage() {
+export function Exercise() {
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export function StartPage() {
   const [page, setPage] = useState(0);
   useEffect(() => {
     setIsLoading(true);
-    getArticles(page)
+    getExercise(page)
       .then(setData)
       .finally(() => setIsLoading(false));
   }, [page]);
@@ -30,6 +30,7 @@ export function StartPage() {
     setModal(true);
   };
 
+
   return (
     <div>
       {isLoading ? (
@@ -39,7 +40,7 @@ export function StartPage() {
           {/* {Object.keys(articles).map((index)=>(<Article key={index} onClick={() => {openModal(articles[index])}}
                  title={articles[index].title} content={articles[index].content} image={articles[index].image}/>))} */}
           {data.map((article, index) => (
-            <Article
+            <VideoArticle
               key={index}
               onClick={() => {
                 openModal(article);
@@ -53,18 +54,12 @@ export function StartPage() {
         <option value={0}>1</option>
         <option value={1}>2</option>
         <option value={2}>3</option>
-        <option value={3}>4</option>
-        <option value={4}>5</option>
-        <option value={5}>6</option>
-        <option value={6}>7</option>
-        <option value={7}>8</option>
-        <option value={8}>9</option>
-        <option value={9}>10</option>
+        
       </select>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>
-          <ArticleModal
+          <VideoArticleModal
             title={modalContent.title}
             content={modalContent.content}
             image={modalContent.image}

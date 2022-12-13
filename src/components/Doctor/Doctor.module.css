@@ -1,0 +1,32 @@
+.datetimeCont{
+    height: 100%;
+    width: 10%;
+    background-color: darkgray;
+    font-size: 1.2rem;
+}
+
+.datetimeCont:active{
+    height: 100%;
+    width: 10%;
+    background-color: aqua;
+    font-size: 1.2rem;
+}
+
+.datetimeCont:hover{
+    background-color: aqua;
+}
+
+.dateWrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    
+}
+
+.selectedItem{
+    height: 100%;
+    width: 10%;
+    background-color: aqua;
+    font-size: 1.2rem;
+} 
