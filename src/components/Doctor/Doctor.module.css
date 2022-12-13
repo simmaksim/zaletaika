@@ -14,6 +14,8 @@
 
 .datetimeCont:hover{
     background-color: aqua;
+    cursor: pointer;
+    overflow: auto;
 }
 
 .dateWrapper{
@@ -21,6 +23,7 @@
     display: flex;
     flex-wrap: wrap;
     gap:20px;
+    overflow: auto;
     
 }
 
