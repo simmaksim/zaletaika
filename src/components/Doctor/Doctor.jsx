@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import DateTimePicker from "react-datetime-picker";
-import { GiftedChat } from 'react-gifted-chat';
 import classes from "./Doctor.module.css";
+import { MessageBox, MessageList, Input, Button } from "react-chat-elements"
+import "react-chat-elements/dist/main.css"
 import { useEffect } from "react";
-
+import {  } from "react-chat-elements"
 
 const dates = require("../../openTime.json");
 
@@ -25,26 +25,7 @@ export function Doctor() {
     console.log(selectedDates);
     addSelectedDate(newSelectedDates);
   };
-  useEffect(()=>{
-    addMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://facebook.github.io/react/img/logo_og.png',
-        },
-      },
-    ])
-  },[])
-
-  const onSend=(messages = [])=> {
-    addMessages((previousState) => 
-       GiftedChat.append(previousState, messages)
-    )};
-
+  
   return (
     <div>
       <h2>
@@ -86,13 +67,45 @@ export function Doctor() {
         })}
       </div>
       <button>Записаться</button>
-      <GiftedChat
-        messages={messages}
-        onSend={onSend}
-        user={{
-          _id: 1,
-        }}
+      {/* <MessageBox
+        position={"left"}
+        type={"text"}
+        title={"Message Box Title"}
+        text="Here is a text type message box"
+      /> */}
+      <div className={classes.chatWrapper} >
+      <MessageList
+    className='message-list'
+    lockable={true}
+    toBottomHeight={'100%'}
+    dataSource={[
+    {
+      position:"left",
+      type:"text",
+      title:"Kursat",
+      text:"Give me a message list example !",
+    },
+    {
+      position:"right",
+      type:"text",
+      title:"Emre",
+      text:"That's all.",
+    },
+    ]}
+    />
+    <div className={classes.chatFooter}>
+      <Input
+        placeholder="Type here..."
+        multiline={true}
+        rightButtons={ <Button text={"Send"} onClick={() => alert("Sending...")} title="Send" />
+      }
       />
+
+     
+    </div>
+      </div>
+      
+    
     </div>
   );
 }

@@ -33,3 +33,14 @@
     background-color: aqua;
     font-size: 1.2rem;
 } 
+
+.chatFooter{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+.chatWrapper{
+    border: 3px solid black;
+}
