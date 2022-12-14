@@ -3,7 +3,6 @@ import classes from "./Doctor.module.css";
 import { MessageBox, MessageList, Input, Button } from "react-chat-elements"
 import "react-chat-elements/dist/main.css"
 import { useEffect } from "react";
-import {  } from "react-chat-elements"
 
 const dates = require("../../openTime.json");
 
