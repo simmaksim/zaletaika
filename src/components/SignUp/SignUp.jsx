@@ -85,6 +85,9 @@ export function SignUp() {
         <button placeholder="dd.mm.yyyy" type="submit">
           Register
         </button>
+        <button placeholder="dd.mm.yyyy" type="submit">
+          Register as a doctor
+        </button>
         <Link to="/logIn">Already signed up? Sign In</Link>
       </div>
     </form>
