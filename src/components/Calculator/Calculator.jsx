@@ -1,9 +1,11 @@
 import classes from "./Calculator.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../App";
 
 export function Calculator() {
   const [height, setHeight] = useState();
   const [weight, setWeight] = useState();
+  const [doctor, isDoctor] = useContext(Context);
 
   const IsHeightValid = (e) => {
     const value = Math.abs(e.target.value);
@@ -30,6 +32,7 @@ export function Calculator() {
 
   return (
     <form>
+      {doctor ? "loh" : null}
       <div className={classes.wrapper}>
         <input placeholder="Height" value={height} onChange={IsHeightValid} />
 
