@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Context } from "../../App";
 
 export function SignUp() {
   const schema = yup.object().shape({
@@ -34,10 +36,15 @@ export function SignUp() {
     resolver: yupResolver(schema),
   });
 
+  //const [doctor, isDoctor] = useState(false);
+  const [doctor, isDoctor] = useContext(Context);
+
   const onSubmitHandler = (data) => {
     console.log({ data });
     reset();
   };
+
+  //let context = useContext(Context);
 
   console.log(errors);
   return (
@@ -85,9 +92,21 @@ export function SignUp() {
         <button placeholder="dd.mm.yyyy" type="submit">
           Register
         </button>
-        <button placeholder="dd.mm.yyyy" type="submit">
+        {/* <button placeholder="dd.mm.yyyy" type="submit">
           Register as a doctor
-        </button>
+        </button> */}
+        <div>
+          <input type="checkbox" id="doc" onClick={() => isDoctor(!doctor)} />
+          <label htmlFor="doc"> I am doctor</label>
+        </div>
+        {doctor ? (
+          <select>
+            <option value="role1">Гинеколог</option>
+            <option value="role1">Акушер</option>
+            <option value="role1">Фельдшер</option>
+          </select>
+        ) : null}
+
         <Link to="/logIn">Already signed up? Sign In</Link>
       </div>
     </form>

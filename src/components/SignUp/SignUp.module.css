@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
 
-    padding: 7rem;
+    padding: 0 7rem;
     gap: 1.5rem;
     border: 2px solid #000;
-}
+} 
