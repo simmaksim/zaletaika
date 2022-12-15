@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import classes from "./Doctor.module.css";
+import { MessageBox, MessageList, Input, Button } from "react-chat-elements"
+import "react-chat-elements/dist/main.css"
 import { MessageBox, MessageList, Input, Button } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+
+
+
 
 const dates = require("../../openTime.json");
 

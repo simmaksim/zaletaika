@@ -14,8 +14,6 @@
 
 .datetimeCont:hover{
     background-color: aqua;
-    cursor: pointer;
-    overflow: auto;
 }
 
 .dateWrapper{
@@ -23,7 +21,6 @@
     display: flex;
     flex-wrap: wrap;
     gap:20px;
-    overflow: auto;
     
 }
 
@@ -33,14 +30,3 @@
     background-color: aqua;
     font-size: 1.2rem;
 } 
-
-.chatFooter{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-
-
-.chatWrapper{
-    border: 3px solid black;
-}
