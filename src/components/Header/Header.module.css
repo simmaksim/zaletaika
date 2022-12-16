@@ -1,15 +1,26 @@
 .head{
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding: 20px;
-    background-color: coral;
+    background-color: white;
 }
 
 a{
     text-decoration: none;
+    color: black;
+    font-family: 'Monaco', monospace;
 }
 
+/* .linkHead{
+    display: flex;
+    flex-direction: column;
+    align-items: ;
+} */
+
+
 a:hover{
-    background-color: black;
-    color: white;
+    background-color: rgb(236, 155, 205);
+    color: black;
+    
 }

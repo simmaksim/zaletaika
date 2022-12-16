@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import classes from "./Doctor.module.css";
-import { MessageBox, MessageList, Input, Button } from "react-chat-elements"
-import "react-chat-elements/dist/main.css"
+import { MessageBox, MessageList, Input, Button } from "react-chat-elements";
+import "react-chat-elements/dist/main.css";
 import { Link } from "react-router-dom";
+import { Button as Btn } from "@mui/material";
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import { useEffect } from "react";
 
-
-
-
 const dates = require("../../openTime.json");
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#E33E7F",
+    },
+  },
+});
 
 export function Doctor() {
   const [value, onChange] = useState(new Date());
@@ -73,7 +80,9 @@ export function Doctor() {
           );
         })}
       </div>
-      <button>Записаться</button>
+      <Btn variant="outlined" theme={theme}>
+        Записаться
+      </Btn>
       {/* <MessageBox
         position={"left"}
         type={"text"}
@@ -114,9 +123,9 @@ export function Doctor() {
           />
         </div>
       </div>
-      <button>
-        <Link to="/videocall">Call to doctor</Link>{" "}
-      </button>
+      <Btn variant="outlined">
+        <Link to="/videocall">Call to doctor</Link>
+      </Btn>
     </div>
   );
 }

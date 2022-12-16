@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import "./Modal.css";
@@ -5,6 +6,13 @@ import "./Modal.css";
 const modalRootElement = document.getElementById("modal");
 
 export function Modal({ isVisible, onClose, children }) {
+  useEffect(() => {
+    document.body.setAttribute(
+      "style",
+      `overflow: ${isVisible ? "hidden" : "auto"}`
+    );
+  }, [isVisible]);
+  
   if (!isVisible) return null;
 
   return createPortal(

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Video, {isSupported} from "twilio-video";
 import { Participant } from "../Participant/Participant";
-alert(isSupported)
+// alert(isSupported)
 export const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);

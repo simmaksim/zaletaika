@@ -3,10 +3,11 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 99vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: #000000;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    /* overflow: hidden; */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -19,10 +20,13 @@
     position: relative;
     background-color: #fff;
     color: #000000;
-    padding: 5% 5%;
+    padding: 16px 16px;
     border: 2px solid #000000;
     border-radius: 10px;
     font-size: 1.2rem;
+    max-width: 50vw;
+    max-height: 70vh;
+    overflow-y: auto;
     cursor: default;
 }
 

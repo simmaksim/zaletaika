@@ -1,9 +1,20 @@
-.wrapper{
-    height: auto;
-    width: 50%;
-    margin: auto;
+.cont{
     display: flex;
-    justify-content: space-around;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+}
+
+.calcTitle{
+    display: flex;
+    align-self: center;
+    font-family: 'Monaco', monospace;
 }

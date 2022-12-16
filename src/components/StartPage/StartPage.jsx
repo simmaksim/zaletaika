@@ -5,6 +5,7 @@ import { ArticleModal } from "./ArticleModal/ArticleModal";
 import { Article } from "../Article/Article";
 import { getArticles } from "../../service.js";
 import { useEffect } from "react";
+import { Pagination } from "../Pagination/Pagination";
 
 const articles = require("../../statii.json");
 
@@ -13,8 +14,9 @@ export function StartPage() {
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   useEffect(() => {
+    console.log(page);
     setIsLoading(true);
     getArticles(page)
       .then(setData)
@@ -49,7 +51,7 @@ export function StartPage() {
           ))}
         </div>
       )}
-      <select onChange={(e) => setPage(e.target.value)}>
+      {/* <select onChange={(e) => setPage(e.target.value)}>
         <option value={0}>1</option>
         <option value={1}>2</option>
         <option value={2}>3</option>
@@ -60,7 +62,8 @@ export function StartPage() {
         <option value={7}>8</option>
         <option value={8}>9</option>
         <option value={9}>10</option>
-      </select>
+      </select> */}
+      <Pagination count={10} onChange={setPage} page={page}/>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>
