@@ -13,33 +13,101 @@ import { Exercise } from "./components/Exersices/Exercises";
 import { Doctor } from "./components/Doctor/Doctor";
 import { VideoCall } from "./components/VideoCall/VideoCall";
 import React, { useState } from "react";
+import { PrivateRoot } from "./components/PrivateRoot/PrivateRoot";
 
-export const Context = React.createContext()
+export const Context = React.createContext();
 
 function App() {
   const [doctor, isDoctor] = useState(false);
   return (
-    <>
-      <Header />
-      <main>
-        <Context.Provider value={[doctor, isDoctor]}>
-          <Routes>
-            <Route path="/registration" element={<SignUp />} />
-            <Route path="/logIn" element={<LoginPage />} />
-            <Route path="/mailconfirmation" element={<MailConfirmation />} />
-            <Route path="/tokenconfrimation" element={<TokenConf />} />
-            <Route path="/resetingpassword" element={<ResetingPassword />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/exercises" element={<Exercise />} />
-            <Route path="/doctor" element={<Doctor />} />
-            <Route path="/videocall" element={<VideoCall />} />
-            <Route path="/" element={<StartPage />} />
-          </Routes>
-        </Context.Provider>
-        
-      </main>
-    </>
+    <main>
+      <Context.Provider value={[doctor, isDoctor]}>
+        <Routes>
+          <Route path="/registration" element={<SignUp />} exact />
+          <Route path="/logIn" element={<LoginPage />} exact />
+          <Route
+            path="/mailconfirmation"
+            element={
+              <PrivateRoot>
+                <MailConfirmation />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/tokenconfrimation"
+            element={
+              <PrivateRoot>
+                <TokenConf />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/resetingpassword"
+            element={
+              <PrivateRoot>
+                <ResetingPassword />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/calculator"
+            element={
+              <PrivateRoot>
+                <Calculator />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/menu"
+            element={
+              <PrivateRoot>
+                <Menu />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/exercises"
+            element={
+              <PrivateRoot>
+                <Exercise />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/doctor"
+            element={
+              <PrivateRoot>
+                <Doctor />
+              </PrivateRoot>
+            }
+          />
+          <Route
+            path="/videocall"
+            element={
+              <PrivateRoot>
+                <VideoCall />
+              </PrivateRoot>
+            }
+            exact
+          />
+          <Route
+            path="/"
+            element={
+              <PrivateRoot>
+                <StartPage />
+              </PrivateRoot>
+            }
+            exact
+          />
+        </Routes>
+      </Context.Provider>
+    </main>
   );
 }
 

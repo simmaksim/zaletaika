@@ -23,9 +23,7 @@ export function StartPage() {
       .finally(() => setIsLoading(false));
   }, [page]);
 
-  let image = articles[0].image;
-  let title = articles[0].title;
-  let content = articles[0].content;
+  
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });

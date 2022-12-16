@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
+import { authApi } from "../../api/auth";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -20,10 +21,10 @@ export function LoginPage() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data) => {
-    navigate();
-    console.log({ data });
-    reset();
+  const onSubmitHandler = async (data) => {
+    const user = await authApi.signIn(data);
+    localStorage.setItem("user", JSON.stringify(user));
+    navigate("/");
   };
 
   return (

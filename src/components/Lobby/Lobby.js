@@ -1,4 +1,7 @@
 import React from "react";
+import { TextField } from "@mui/material";
+import { Button as Btn } from "@mui/material";
+
 
 export const Lobby = ({
   username,
@@ -12,7 +15,8 @@ export const Lobby = ({
       <h2>Enter a room</h2>
       <div>
         <label htmlFor="name">Name:</label>
-        <input
+        <TextField
+          variant="outlined"
           type="text"
           id="field"
           value={username}
@@ -23,7 +27,8 @@ export const Lobby = ({
 
       <div>
         <label htmlFor="room">Room name:</label>
-        <input
+        <TextField
+          variant="outlined"
           type="text"
           id="room"
           value={roomName}
@@ -31,7 +36,7 @@ export const Lobby = ({
           required
         />
       </div>
-      <button type="submit">Submit</button>
+      <Btn variant="outlined"type="submit">Submit</Btn>
     </form>
   );
 };
