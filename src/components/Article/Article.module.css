@@ -3,18 +3,20 @@
     height: 100%;
     overflow: hidden;
     border-radius: 5px;
-    
+    font-family: 'Monaco', monospace;
 }
 
 
 
 .articleWrapper:hover{
-    background-color: black;
-    color: white;
+    background-color: rgb(236, 155, 205);
+    color: black;
 }
 
 .text{
-    height: 105px
+    height: 105px;
+    font-family: 'Monaco', monospace;
+    
 }
 
 .image{

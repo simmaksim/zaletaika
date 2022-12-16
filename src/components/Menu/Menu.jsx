@@ -5,6 +5,7 @@ import { ArticleModal } from "../StartPage/ArticleModal/ArticleModal";
 import { Article } from "../Article/Article";
 import { getFood } from "../../service.js";
 import { useEffect } from "react";
+import { Pagination } from "../Pagination/Pagination";
 
 const articles = require("../../food.json");
 
@@ -13,8 +14,9 @@ export function Menu() {
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   useEffect(() => {
+    console.log(page);
     setIsLoading(true);
     getFood(page)
       .then(setData)
@@ -29,7 +31,6 @@ export function Menu() {
     setModalContent({ title, content, image });
     setModal(true);
   };
-
 
   return (
     <div>
@@ -50,11 +51,21 @@ export function Menu() {
           ))}
         </div>
       )}
-      <select onChange={(e) => setPage(e.target.value)}>
+      {/* <select onChange={(e) => setPage(e.target.value)}>
         <option value={0}>1</option>
         <option value={1}>2</option>
-        
-      </select>
+        <option value={2}>3</option>
+        <option value={3}>4</option>
+        <option value={4}>5</option>
+        <option value={5}>6</option>
+        <option value={6}>7</option>
+        <option value={7}>8</option>
+        <option value={8}>9</option>
+        <option value={9}>10</option>
+      </select> */}
+      <div className={classes.pages}>
+        <Pagination count={10} onChange={setPage} page={page} />
+      </div>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>

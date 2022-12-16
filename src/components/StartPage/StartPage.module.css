@@ -5,3 +5,8 @@
     gap: 20px;         
     
 }
+
+.pages{
+    display: flex;
+    justify-content: center;
+}

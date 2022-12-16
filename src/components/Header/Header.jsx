@@ -15,12 +15,12 @@ export function Header() {
       />
       <div>
       </div>
-      <Link to="/" className={classes.linkHead}>Main page</Link>
-      <Link to="/exercises">Exercises</Link>
-      <Link to="/calculator">Calculator</Link>
-      <Link to="/doctor">Doctor</Link>
-      <Link to="/menu">Menu</Link>
-      <Link to="/logIn">Login</Link>
+      <Link to="/" className={classes.linkHead}>Главная</Link>
+      <Link to="/exercises">Упражнения</Link>
+      <Link to="/calculator">Калькулятор</Link>
+      <Link to="/doctor">Доктор</Link>
+      <Link to="/menu">Меню</Link>
+      <Link to="/logIn">Войти</Link>
     </header>
   );
 }

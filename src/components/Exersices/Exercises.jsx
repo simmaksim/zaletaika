@@ -4,6 +4,7 @@ import { useState } from "react";
 import { VideoArticleModal } from "./VideoArticleModal/VideoArticleModal";
 import { VideoArticle } from "../VideoArticle/VideoArticle";
 import { getExercise } from "../../service.js";
+import { Pagination } from "../Pagination/Pagination";
 import { useEffect } from "react";
 
 const articles = require("../../exercise.json");
@@ -13,8 +14,9 @@ export function Exercise() {
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   useEffect(() => {
+    console.log(page);
     setIsLoading(true);
     getExercise(page)
       .then(setData)
@@ -29,7 +31,6 @@ export function Exercise() {
     setModalContent({ title, content, image });
     setModal(true);
   };
-
 
   return (
     <div>
@@ -50,12 +51,21 @@ export function Exercise() {
           ))}
         </div>
       )}
-      <select onChange={(e) => setPage(e.target.value)}>
+      {/* <select onChange={(e) => setPage(e.target.value)}>
         <option value={0}>1</option>
         <option value={1}>2</option>
         <option value={2}>3</option>
-        
-      </select>
+        <option value={3}>4</option>
+        <option value={4}>5</option>
+        <option value={5}>6</option>
+        <option value={6}>7</option>
+        <option value={7}>8</option>
+        <option value={8}>9</option>
+        <option value={9}>10</option>
+      </select> */}
+      <div className={classes.pages}>
+        <Pagination count={10} onChange={setPage} page={page} />
+      </div>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>

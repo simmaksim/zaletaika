@@ -63,7 +63,9 @@ export function StartPage() {
         <option value={8}>9</option>
         <option value={9}>10</option>
       </select> */}
-      <Pagination count={10} onChange={setPage} page={page}/>
+      <div className={classes.pages}>
+        <Pagination count={10} onChange={setPage} page={page} />
+      </div>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>
