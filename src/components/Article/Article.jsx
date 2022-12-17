@@ -1,5 +1,6 @@
 import classes from "./Article.module.css";
 
+
 export function Article(props) {
   return (
     <div className={classes.articleWrapper} onClick={props.onClick}>

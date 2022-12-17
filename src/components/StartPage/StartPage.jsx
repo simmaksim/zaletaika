@@ -6,24 +6,29 @@ import { Article } from "../Article/Article";
 import { getArticles } from "../../service.js";
 import { useEffect } from "react";
 import { Pagination } from "../Pagination/Pagination";
+import { articleApi } from "../../api/article";
 
-const articles = require("../../statii.json");
+//const articles = require("../../statii.json");
 
 export function StartPage() {
+  const [articles, setArticles] = useState();
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
+    setArticles(async () => {
+      await articleApi.getArticle().then((result) => {
+        console.log(result);
+      });
+    });
     console.log(page);
     setIsLoading(true);
     getArticles(page)
       .then(setData)
       .finally(() => setIsLoading(false));
   }, [page]);
-
-  
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });

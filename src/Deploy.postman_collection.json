@@ -1,0 +1,1118 @@
+{
+	"info": {
+		"_postman_id": "d37f5ec9-9829-4a40-a1b6-15b331540482",
+		"name": "Deploy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17718669"
+	},
+	"item": [
+		{
+			"name": "Auth Logic",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testusername4\",\n    \"email\": \"testemail4@email.com\",\n    \"password\": \"TestUser#09\",\n    \"confirmationPassword\": \"TestUser#09\",\n    \"birthDate\": \"2000-12-22\",\n    \"firstName\": \"Emily\",\n    \"lastName\": \"Reinhart\",\n    \"avatar\": \"BLOND_HAIR\",\n    \"role\": \"PATIENT\",\n    \"occupation\": \"Какой-то ещё доктор\",\n    \"dateOfPregnancy\": \"2022-07-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/auth/signup/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testemail@email.com\",\n    \"password\": \"TestUser#09\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/auth/login/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update my email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "testemail3@email.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/auth/change-email/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-email",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token f9Pn3tmodi7fXJyPRXOkYBTWQI3dqjvbatetsuemrn1esPDi74d8qncrHE5QpaHt1ScggiUUPLOdm",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "oldPassword",
+									"value": "TestUser#055",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "TestUser#09",
+									"type": "text"
+								},
+								{
+									"key": "confirmationPassword",
+									"value": "TestUser#09",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/auth/change-password/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change-password",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin requests",
+			"item": [
+				{
+					"name": "Get User GID Role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/get-user-gid-and-role/3/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"get-user-gid-and-role",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign doctor to patient by GIDs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "patientGid",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "doctorGid",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "force",
+									"value": "True",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/assign-doctor-to-patient/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"assign-doctor-to-patient",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Doctor Account by GID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/verify-doctor-account/3/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"verify-doctor-account",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/get-all-users-info/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"get-all-users-info",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exercise",
+			"item": [
+				{
+					"name": "Admin Post new exercise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Тренировка для маленьких\",\n        \"content\": \"Несколько упражнения для самых маленьких\",\n        \"image\": \"https://www.youtube.com/embed/WglwfTL0iKs\",\n        \"video\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/exercise/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"exercise",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update exercise",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Hеделя 1\",\n    \"content\": \"Первый день этой недели и есть первый день менструации. Никаких особенностей неделя не имеет, особенно если женщина не планирует зачатия.У женщины: менструальное кровотечение не имеет отличительных особенностей, длится как обычно. Когда полость матки самоочищается, начинается выработка половых гормонов, которые способствуют созреванию фолликулов в яичниках.У малыша: крохи пока нет, он еще не зачат. И хотя неделя называется первой неделей беременности, беременной по факту женщина еще не является. Если в этом цикле планируется зачатие, важно с первого дня менструации (а лучше заранее) отказаться от употребления кофе, алкоголя, привести в порядок нервную систему, не принимать сильные обезболивающие и ублюдки ебаные хыхыхыхы\",\n    \"image\": \"https://media.istockphoto.com/id/1242895608/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B0%D1%8F-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D0%B0-%D0%BD%D0%B0-%D0%B1%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%81-%D0%B4%D0%B2%D1%83%D0%BC%D1%8F-%D0%BF%D0%BE%D0%BB%D0%BE%D1%81%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B0-%D1%81%D0%B2%D0%B5%D1%82%D0%BB%D0%BE-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9.jpg?s=612x612&w=0&k=20&c=WER2Sj77st4NODcefP_Mf-AqKQCurskVFmHg3L4uxdM=\",\n    \"video\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/exercise/1/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"exercise",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete exercise",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/exercise/1/delete/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"exercise",
+								"1",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All exercises",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/exercise/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"exercise",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get exercise by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/exercise/1/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"exercise",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Admin Post new menu",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Салат из морской капусты\",\n        \"content\": \"Морская капуста выводит из организма тяжелые металлы и улучшает пищеварение. Этот салат подходит на обед или ужин: мало калорий, много белка и никакого йододефицита!\\nЧто нужно:\\n\\n- 300 г рыбного филе (желательно использовать морскую рыбу)\\n- 200 г морской капусты\\n- 2 яйца\\n- ½ луковицы\\n- 1 ст. ложка лимонного сока\\n\\nКак приготовить салат из морской капусты:\\n\\n- Филе рыбы отварить на пару, охладить и нарезать небольшими кусочками.\\n\\n- Яйца отварить и мелко порубить.\\n\\n- Репчатый лук мелко нашинковать.\\n\\n- Соединить морскую капусту, яйца, лук, рыбу и перемешать.\\n\\n- Заправить лимонным соком.\",\n        \"image\": \"https://cdnvideo-static-ssl.domashniy.ru/uploads/media_library/picture/304927197.jpg\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/menu/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update menu",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Hеделя 1\",\n    \"content\": \"Первый день этой недели и есть первый день менструации. Никаких особенностей неделя не имеет, особенно если женщина не планирует зачатия.У женщины: менструальное кровотечение не имеет отличительных особенностей, длится как обычно. Когда полость матки самоочищается, начинается выработка половых гормонов, которые способствуют созреванию фолликулов в яичниках.У малыша: крохи пока нет, он еще не зачат. И хотя неделя называется первой неделей беременности, беременной по факту женщина еще не является. Если в этом цикле планируется зачатие, важно с первого дня менструации (а лучше заранее) отказаться от употребления кофе, алкоголя, привести в порядок нервную систему, не принимать сильные обезболивающие и ублюдки ебаные хыхыхыхы\",\n    \"image\": \"https://media.istockphoto.com/id/1242895608/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B0%D1%8F-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D0%B0-%D0%BD%D0%B0-%D0%B1%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%81-%D0%B4%D0%B2%D1%83%D0%BC%D1%8F-%D0%BF%D0%BE%D0%BB%D0%BE%D1%81%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B0-%D1%81%D0%B2%D0%B5%D1%82%D0%BB%D0%BE-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9.jpg?s=612x612&w=0&k=20&c=WER2Sj77st4NODcefP_Mf-AqKQCurskVFmHg3L4uxdM=\",\n    \"category\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/menu/3/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"menu",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete menu",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/menu/3/delete/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"menu",
+								"3",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All menus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/menu/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"menu",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get menu by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/menu/4/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"menu",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Admin Post new article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Неделя 40\",\n        \"content\": \"Если женщина в 40 недель не родит, это не страшно: такая беременность не считается переношенной, ее называют пролонгированной. До 42 недель у ребенка есть время.\\nНапомним, что мы подготовили статью о подготовке к родам, где рассмотрены все важные аспекты.\\nСписок анализов с 37 по 40ю недели:\\n- общий анализ мочи;\\n- КТГ;\\n- общий анализ крови;\\n- биохимический анализ крови;\\n- коагулограмма — анализ крови на свертываемость.\",\n        \"image\": \"https://media.istockphoto.com/id/1242895608/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B0%D1%8F-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D0%B0-%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D1%8B-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F-%D1%82%D0%B5%D1%81%D1%82%D0%B0-%D0%BD%D0%B0-%D0%B1%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%81-%D0%B4%D0%B2%D1%83%D0%BC%D1%8F-%D0%BF%D0%BE%D0%BB%D0%BE%D1%81%D0%B0%D0%BC%D0%B8-%D0%BD%D0%B0-%D1%81%D0%B2%D0%B5%D1%82%D0%BB%D0%BE-%D1%80%D0%BE%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9.jpg?s=612x612&w=0&k=20&c=WER2Sj77st4NODcefP_Mf-AqKQCurskVFmHg3L4uxdM=\"\n\n        \n    } ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/article/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"article",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Update article",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Hеделя 1\",\n    \"content\": \"Первый день этой недели и есть первый день менструации. Никаких особенностей неделя не имеет, особенно если женщина не планирует зачатия.У женщины: менструальное кровотечение не имеет отличительных особенностей, длится как обычно. Когда полость матки самоочищается, начинается выработка половых гормонов, которые способствуют созреванию фолликулов в яичниках.У малыша: крохи пока нет, он еще не зачат. И хотя неделя называется первой неделей беременности, беременной по факту женщина еще не является. Если в этом цикле планируется зачатие, важно с первого дня менструации (а лучше заранее) отказаться от употребления кофе, алкоголя, привести в порядок нервную систему, не принимать сильные обезболивающие и ублюдки ебаные хыхыхыхы\",\n    \"image\": \"newimage\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/article/1/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"article",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Delete article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token papsxxxdlfalsdfiaf__a-asfdDDDADMIN_SECRET_TOKENjd003-2-1=jsdfaj9sd9fa394a999-11--19999(###",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://139.144.79.84/api/admin/article/1/delete/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"admin",
+								"article",
+								"1",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/article/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"article",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get article by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://139.144.79.84/api/article/1/",
+							"protocol": "http",
+							"host": [
+								"139",
+								"144",
+								"79",
+								"84"
+							],
+							"path": [
+								"api",
+								"article",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Patient",
+					"item": [
+						{
+							"name": "Patient Get Conversation",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token f9Pn3tmodi7fXJyPRXOkYBTWQI3dqjvbatetsuemrn1esPDi74d8qncrHE5QpaHt1ScggiUUPLOdm",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/patient/conversation/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"patient",
+										"conversation",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patient Post new Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token f9Pn3tmodi7fXJyPRXOkYBTWQI3dqjvbatetsuemrn1esPDi74d8qncrHE5QpaHt1ScggiUUPLOdm",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Здорово)\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://139.144.79.84/api/patient/conversation/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"patient",
+										"conversation",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patient Mark as read",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token f9Pn3tmodi7fXJyPRXOkYBTWQI3dqjvbatetsuemrn1esPDi74d8qncrHE5QpaHt1ScggiUUPLOdm",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/patient/conversation/mark-as-read/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"patient",
+										"conversation",
+										"mark-as-read",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patient Get Unread Messages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token f9Pn3tmodi7fXJyPRXOkYBTWQI3dqjvbatetsuemrn1esPDi74d8qncrHE5QpaHt1ScggiUUPLOdm",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/patient/conversation/unread-messages/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"patient",
+										"conversation",
+										"unread-messages",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Doctor",
+					"item": [
+						{
+							"name": "Get All Doctor's Conversations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token b0yIv9B3yP4OIbBH6XeHt58R5d3HwDhbresumtentaselT0X3qIOpS1kwWz7HkOeZTWOUD911J0S",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/doctor/conversations/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"conversations",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Doctor's Conversation",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token b0yIv9B3yP4OIbBH6XeHt58R5d3HwDhbresumtentaselT0X3qIOpS1kwWz7HkOeZTWOUD911J0S",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/doctor/conversations/6/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"conversations",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doctor Post new Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token b0yIv9B3yP4OIbBH6XeHt58R5d3HwDhbresumtentaselT0X3qIOpS1kwWz7HkOeZTWOUD911J0S",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Абсолютно уверен в наилучшем исходе ^^\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://139.144.79.84/api/doctor/conversations/6/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"conversations",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doctor Get Unread Messages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token b0yIv9B3yP4OIbBH6XeHt58R5d3HwDhbresumtentaselT0X3qIOpS1kwWz7HkOeZTWOUD911J0S",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/doctor/conversations/6/unread-messages/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"conversations",
+										"6",
+										"unread-messages",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doctor Mark as read",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token b0yIv9B3yP4OIbBH6XeHt58R5d3HwDhbresumtentaselT0X3qIOpS1kwWz7HkOeZTWOUD911J0S",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://139.144.79.84/api/doctor/conversations/6/mark-as-read/",
+									"protocol": "http",
+									"host": [
+										"139",
+										"144",
+										"79",
+										"84"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"conversations",
+										"6",
+										"mark-as-read",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
