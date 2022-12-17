@@ -8,7 +8,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { useEffect } from "react";
 import { exerciseApi } from "../../api/exercises";
 
-const articles = require("../../exercise.json");
+//const articles = require("../../exercise.json");
 
 export function Exercise() {
   const [exercises, setExercises] = useState();

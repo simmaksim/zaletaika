@@ -6,16 +6,24 @@ import { Article } from "../Article/Article";
 import { getFood } from "../../service.js";
 import { useEffect } from "react";
 import { Pagination } from "../Pagination/Pagination";
+import { menuApi } from "../../api/menu";
 
-const articles = require("../../food.json");
+
+//const articles = require("../../food.json");
 
 export function Menu() {
+  const [menues, setMenues] = useState();
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
+    setMenues(async () => {
+      await menuApi.getMenu().then((result) => {
+        console.log(result);
+      });
+    });
     console.log(page);
     setIsLoading(true);
     getFood(page)
@@ -23,9 +31,7 @@ export function Menu() {
       .finally(() => setIsLoading(false));
   }, [page]);
 
-  let image = articles[0].image;
-  let title = articles[0].title;
-  let content = articles[0].content;
+  
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });
