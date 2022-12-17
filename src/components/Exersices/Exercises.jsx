@@ -6,16 +6,27 @@ import { VideoArticle } from "../VideoArticle/VideoArticle";
 import { getExercise } from "../../service.js";
 import { Pagination } from "../Pagination/Pagination";
 import { useEffect } from "react";
+import { exerciseApi } from "../../api/exercises";
 
 const articles = require("../../exercise.json");
 
 export function Exercise() {
+  const [exercises, setExercises] = useState();
+  
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
+    setExercises(async () => {
+      await exerciseApi.getExercise().then((result) => {
+        console.log(result);
+      });
+      // await articleApi.getArticle().then((result) => {
+      //   console.log(result);
+      // });
+    });
     console.log(page);
     setIsLoading(true);
     getExercise(page)
@@ -23,9 +34,6 @@ export function Exercise() {
       .finally(() => setIsLoading(false));
   }, [page]);
 
-  let image = articles[0].image;
-  let title = articles[0].title;
-  let content = articles[0].content;
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });
