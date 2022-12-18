@@ -7,7 +7,7 @@ export function PrivateRoot({ children }) {
     !!JSON.parse(localStorage.getItem("user"))?.token
   );
 
-  console.log(isAuthorized);
+  //console.log(isAuthorized);
 
   useLayoutEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));

@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { authApi } from "../../api/auth";
+import { Context } from "../../App";
+import { useContext } from "react";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -12,6 +14,9 @@ const schema = yup.object().shape({
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const [doctor, isDoctor] = useContext(Context);
+  // isDoctor(true);
+  // console.log(doctor);
   const {
     register,
     handleSubmit,
@@ -23,7 +28,18 @@ export function LoginPage() {
 
   const onSubmitHandler = async (data) => {
     const user = await authApi.signIn(data);
+    if (user.role === 'DOCTOR') {
+      isDoctor(true);
+    } else {
+      isDoctor(false);
+    }
+    console.log(doctor);
+    //return user;
+
     localStorage.setItem("user", JSON.stringify(user));
+    console.log(JSON.stringify(user.role));
+    // if (JSON.stringify(user.role) === "DOCTOR") isDoctor(true);
+    // else isDoctor(false);
     navigate("/");
   };
 

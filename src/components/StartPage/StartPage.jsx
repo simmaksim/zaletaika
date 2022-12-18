@@ -11,30 +11,29 @@ import { articleApi } from "../../api/article";
 //const articles = require("../../statii.json");
 
 export function StartPage() {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    setArticles(async () => {
-      await articleApi.getArticle().then((result) => {
-        console.log(result);
-      });
-    });
-    console.log(page);
     setIsLoading(true);
-    getArticles(page)
-      .then(setData)
+    articleApi
+      .getArticle()
+      .then(setArticles)
       .finally(() => setIsLoading(false));
-  }, [page]);
+  }, []);
+
+  useEffect(() => {
+    const offset = (page - 1) * 4;
+    setData(articles.slice(offset, offset + 4));
+  }, [page, articles]);
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });
     setModal(true);
   };
-
   return (
     <div>
       {isLoading ? (
@@ -54,20 +53,13 @@ export function StartPage() {
           ))}
         </div>
       )}
-      {/* <select onChange={(e) => setPage(e.target.value)}>
-        <option value={0}>1</option>
-        <option value={1}>2</option>
-        <option value={2}>3</option>
-        <option value={3}>4</option>
-        <option value={4}>5</option>
-        <option value={5}>6</option>
-        <option value={6}>7</option>
-        <option value={7}>8</option>
-        <option value={8}>9</option>
-        <option value={9}>10</option>
-      </select> */}
+  
       <div className={classes.pages}>
-        <Pagination count={10} onChange={setPage} page={page} />
+        <Pagination
+          count={articles.length / 4}
+          onChange={setPage}
+          page={page}
+        />
       </div>
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
@@ -78,9 +70,7 @@ export function StartPage() {
             image={modalContent.image}
           />
         </div>
-        {/* <img href="../../article-photo.jpg" />
-                    <h3>{title}</h3>
-                    <p>{content}</p> */}
+        
       </Modal>
     </div>
   );

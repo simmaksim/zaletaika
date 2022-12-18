@@ -11,7 +11,7 @@ import { exerciseApi } from "../../api/exercises";
 //const articles = require("../../exercise.json");
 
 export function Exercise() {
-  const [exercises, setExercises] = useState();
+  const [exercises, setExercises] = useState([]);
   
   const [isModalOpen, setModal] = useState(false);
   const [modalContent, setModalContent] = useState({});
@@ -19,20 +19,14 @@ export function Exercise() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    setExercises(async () => {
-      await exerciseApi.getExercise().then((result) => {
-        console.log(result);
-      });
-      // await articleApi.getArticle().then((result) => {
-      //   console.log(result);
-      // });
-    });
-    console.log(page);
     setIsLoading(true);
-    getExercise(page)
-      .then(setData)
-      .finally(() => setIsLoading(false));
-  }, [page]);
+    exerciseApi.getExercise().then(setExercises).finally(()=>setIsLoading(false))
+  }, []);
+
+   useEffect(() => {
+     const offset = (page - 1) * 4;
+     setData(exercises.slice(offset, offset + 4));
+   }, [page, exercises]);
 
 
   const openModal = ({ title, content, image }) => {
@@ -72,8 +66,10 @@ export function Exercise() {
         <option value={9}>10</option>
       </select> */}
       <div className={classes.pages}>
-        <Pagination count={10} onChange={setPage} page={page} />
+        <Pagination count={Math.ceil(exercises.length / 4)} onChange={setPage} page={page} />
       </div>
+
+      
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>

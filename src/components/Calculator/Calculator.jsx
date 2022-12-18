@@ -53,7 +53,7 @@ export function Calculator() {
     <div className={classes.cont}>
       <h3 className={classes.calcTitle}>Калькулятор индекса массы тела</h3>
       <form>
-        {doctor ? "loh" : null}
+       
 
         <div className={classes.wrapper}>
           <TextField

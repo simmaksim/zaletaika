@@ -30,7 +30,7 @@ export const api = {
 axios.interceptors.request.use(async (config) => {
   const user = JSON.parse(localStorage.getItem("user"));
   if (user?.token && config.headers) {
-    config.headers["Authorization"] = `Bearer ${user.token}`;
+    config.headers["Authorization"] = `Token ${user.token}`;
   }
   return config;
 }, Promise.reject);

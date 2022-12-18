@@ -5,7 +5,8 @@ import "react-chat-elements/dist/main.css";
 import { Link } from "react-router-dom";
 import { Button as Btn } from "@mui/material";
 import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { patientChatApi } from "../../api/patientChat";
 
 const dates = require("../../openTime.json");
 
@@ -19,11 +20,25 @@ const theme = createTheme({
 
 export function Doctor() {
   const [value, onChange] = useState(new Date());
-  const doctorName = "Ivan";
-  const doctorSurname = "Kondrashov";
-  const [messages, addMessages] = useState([]);
+  const [message, setMessage] = useState("");
+  const ref = useRef(null);
   const [selectedDates, addSelectedDate] = useState([]);
-  console.log(selectedDates);
+ 
+
+  const sendMessage = async () => {
+    
+    setMessage("");
+    const response = await patientChatApi.postMessage({
+      content: ref.current.value,
+    });
+
+    setConversation((prev) => ({
+      ...prev,
+      messages: [...prev.messages, response],
+    }));
+    ref.current.value = "";
+  };
+
   const selectDateHandler = (date) => {
     console.log(typeof date);
     console.log(selectedDates.includes(date));
@@ -38,33 +53,29 @@ export function Doctor() {
     addSelectedDate(newSelectedDates);
   };
 
+  const [conversation, setConversation] = useState({
+    employeeName: "",
+    messages: [],
+  });
+
+  useEffect(() => {
+    patientChatApi.getConversation().then(setConversation);
+    const interval = setInterval(() => {
+      patientChatApi.getConversation().then(setConversation);
+    }, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div>
-      <h2>
-        Ваш доктор: {doctorName} {doctorSurname}
-      </h2>
+      <h2>Ваш доктор: {conversation.employeeName}</h2>
       <div className={classes.dateWrapper}>
         {dates.map((date) => {
           const [day, time] = date.split("'T'");
-          //if (selectedDates.includes(date))
-          //  return (
-          //    <div
-          //      key={date}
-          //      className={classes.selectedItem}
-          //      onClick={() => selectDateHandler(date)}
-          //    >
-          //      {day} - {time}
-          //    </div>
-          //  );
-          //  return(
-          //      <div
-          //      key={date}
-          //      className={classes.datetimeCont}
-          //      onClick={() => selectDateHandler(date)}
-          //    >
-          //      {day} - {time}
-          //    </div>
-          //  )
+
           return (
             <div
               key={date}
@@ -91,34 +102,40 @@ export function Doctor() {
       /> */}
       <div className={classes.chatWrapper}>
         <MessageList
-          className="message-list"
-          lockable={true}
-          toBottomHeight={"100%"}
-          dataSource={[
-            {
-              position: "left",
+           className={classes.messageList}
+         
+          dataSource={
+            conversation.messages.map(({ content, fromName, time }) => ({
+              position:
+                fromName === conversation.employeeName ? "right" : "left",
               type: "text",
-              title: "Kursat",
-              text: "Give me a message list example !",
-            },
-            {
-              position: "right",
-              type: "text",
-              title: "Emre",
-              text: "That's all.",
-            },
-          ]}
+              text: content,
+              date: new Date(time.replaceAll("'", "").slice(0, -1)),
+              title: fromName,
+            }))
+            //   [
+            //   {
+            //     position: "left",
+            //     type: "text",
+            //     title: "Kursat",
+            //     text: "Give me a message list example !",
+            //   },
+            //   {
+            //     position: "right",
+            //     type: "text",
+            //     title: "Emre",
+            //     text: "That's all.",
+            //   },
+            // ]
+          }
         />
         <div className={classes.chatFooter}>
           <Input
+            referance={ref}
             placeholder="Type here..."
             multiline={true}
             rightButtons={
-              <Button
-                text={"Send"}
-                onClick={() => alert("Sending...")}
-                title="Send"
-              />
+              <Button text={"Send"} onClick={sendMessage} title="Send" />
             }
           />
         </div>
