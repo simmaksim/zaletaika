@@ -22,7 +22,7 @@ export const VideoChat = () => {
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();
-      const data = await fetch("http://192.168.43.91:3001/video/token", {
+      const data = await fetch("http://192.168.43.91:3000/video/token", {
         method: "POST",
         body: JSON.stringify({
           identity: username,

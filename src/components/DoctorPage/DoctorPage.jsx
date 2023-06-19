@@ -66,7 +66,7 @@ export function DoctorPage() {
   console.log()
   return (
     <div>
-      <div className={classes.dateWrapper}>
+      {/* <div className={classes.dateWrapper}>
         {dates.map((date) => {
           const [day, time] = date.split("'T'");
           return (
@@ -83,7 +83,7 @@ export function DoctorPage() {
             </div>
           );
         })}
-      </div>
+      </div> */}
       <div className={classes.chatWrapper}>
         <ChatList
           className="chat-list"
@@ -92,13 +92,13 @@ export function DoctorPage() {
             ({ patientName, unreadMessagesCount, id }) => ({
               alt: "",
               title: patientName,
-              unread: unreadMessagesCount,
+              // unread: unreadMessagesCount,
               id,
             })
           )}
         />
         <MessageList
-          className="message-list"
+          className={classes.messageList}
           lockable={true}
           toBottomHeight={"100%"}
           dataSource={conversationItem.messages.map(

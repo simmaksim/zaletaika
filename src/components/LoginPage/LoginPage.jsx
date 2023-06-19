@@ -28,7 +28,7 @@ export function LoginPage() {
 
   const onSubmitHandler = async (data) => {
     const user = await authApi.signIn(data);
-    if (user.role === 'DOCTOR') {
+    if (user.role === "DOCTOR") {
       isDoctor(true);
     } else {
       isDoctor(false);

@@ -7,6 +7,7 @@ import { getArticles } from "../../service.js";
 import { useEffect } from "react";
 import { Pagination } from "../Pagination/Pagination";
 import { articleApi } from "../../api/article";
+import test from "../../statii.json";
 
 //const articles = require("../../statii.json");
 
@@ -17,23 +18,29 @@ export function StartPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   articleApi
+  //     .getArticle()
+  //     .then(setArticles)
+  //     .finally(() => setIsLoading(false));
+  // }, []);
   useEffect(() => {
-    setIsLoading(true);
-    articleApi
-      .getArticle()
-      .then(setArticles)
-      .finally(() => setIsLoading(false));
+    // setIsLoading(true);
+    console.log(test);
+    setArticles([test]);
   }, []);
 
-  useEffect(() => {
-    const offset = (page - 1) * 4;
-    setData(articles.slice(offset, offset + 4));
-  }, [page, articles]);
+  // useEffect(() => {
+  //   const offset = (page - 1) * 4;
+  //   setData(articles.slice(offset, offset + 4));
+  // }, [page, articles]);
 
   const openModal = ({ title, content, image }) => {
     setModalContent({ title, content, image });
     setModal(true);
   };
+  console.log("testst", articles)
   return (
     <div>
       {isLoading ? (
@@ -41,26 +48,32 @@ export function StartPage() {
       ) : (
         <div className={classes.articles}>
           {/* {Object.keys(articles).map((index)=>(<Article key={index} onClick={() => {openModal(articles[index])}}
-                 title={articles[index].title} content={articles[index].content} image={articles[index].image}/>))} */}
-          {data.map((article, index) => (
+                 title={articles[index].title} content={articles[index].content} image={articles[index].image} />))} */}
+          {articles.length ? (
+            articles[0].map((article, index) => (
             <Article
               key={index}
               onClick={() => {
                 openModal(article);
               }}
+              title={article.title}
+              image={article.image}
+              content={article.image}
               {...article}
             />
-          ))}
+          ))
+          ) : null}
+          
         </div>
       )}
-  
-      <div className={classes.pages}>
+
+      {/* <div className={classes.pages}>
         <Pagination
           count={articles.length / 4}
           onChange={setPage}
           page={page}
         />
-      </div>
+      </div> */}
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
         <div>
@@ -70,7 +83,6 @@ export function StartPage() {
             image={modalContent.image}
           />
         </div>
-        
       </Modal>
     </div>
   );

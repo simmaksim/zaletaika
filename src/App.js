@@ -14,7 +14,7 @@ import { Doctor } from "./components/Doctor/Doctor";
 import { VideoCall } from "./components/VideoCall/VideoCall";
 import React, { useState } from "react";
 import { PrivateRoot } from "./components/PrivateRoot/PrivateRoot";
-import { DoctorPage} from "./components/DoctorPage/DoctorPage"
+import { DoctorPage } from "./components/DoctorPage/DoctorPage";
 
 export const Context = React.createContext();
 

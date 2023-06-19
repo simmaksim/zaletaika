@@ -11,10 +11,11 @@ export function PrivateRoot({ children }) {
 
   useLayoutEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    setIsAuthorized(!!user?.token);
+    //setIsAuthorized(!!user?.token);
+    setIsAuthorized(true);
   }, []);
 
-  if (!isAuthorized) return <Navigate to={"/logIn"} />;
+  //if (!isAuthorized) return <Navigate to={"/logIn"} />;
   return (
     <>
       <Header />

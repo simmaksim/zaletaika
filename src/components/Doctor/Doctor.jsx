@@ -72,7 +72,7 @@ export function Doctor() {
   return (
     <div>
       <h2>Ваш доктор: {conversation.employeeName}</h2>
-      <div className={classes.dateWrapper}>
+      {/* <div className={classes.dateWrapper}>
         {dates.map((date) => {
           const [day, time] = date.split("'T'");
 
@@ -90,10 +90,10 @@ export function Doctor() {
             </div>
           );
         })}
-      </div>
-      <Btn variant="outlined" theme={theme}>
+      </div> */}
+      {/* <Btn variant="outlined" theme={theme}>
         Записаться
-      </Btn>
+      </Btn> */}
       {/* <MessageBox
         position={"left"}
         type={"text"}
