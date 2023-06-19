@@ -8,7 +8,7 @@ import { Pagination } from "../Pagination/Pagination";
 import { useEffect } from "react";
 import { exerciseApi } from "../../api/exercises";
 
-//const articles = require("../../exercise.json");
+const exercisesStat = require("../../exercise.json");
 
 export function Exercise() {
   const [exercises, setExercises] = useState([]);
@@ -19,8 +19,9 @@ export function Exercise() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    setIsLoading(true);
-    exerciseApi.getExercise().then(setExercises).finally(()=>setIsLoading(false))
+    //setIsLoading(true);
+    //exerciseApi.getExercise().then(setExercises).finally(()=>setIsLoading(false))
+    setExercises(exercisesStat);
   }, []);
 
    useEffect(() => {
@@ -72,13 +73,13 @@ export function Exercise() {
       
 
       <Modal isVisible={isModalOpen} onClose={() => setModal(false)}>
-        <div>
+
           <VideoArticleModal
             title={modalContent.title}
             content={modalContent.content}
             image={modalContent.image}
           />
-        </div>
+
         {/* <img href="../../article-photo.jpg" />
                     <h3>{title}</h3>
                     <p>{content}</p> */}

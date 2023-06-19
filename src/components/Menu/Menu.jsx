@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Pagination } from "../Pagination/Pagination";
 import { menuApi } from "../../api/menu";
 
-//const articles = require("../../statii.json");
+const articlesStatick = require("../../food.json");
 
 export function Menu() {
   const [articles, setArticles] = useState([]);
@@ -18,11 +18,13 @@ export function Menu() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   useEffect(() => {
-    setIsLoading(true);
-    menuApi
-      .getMenu()
-      .then(setArticles)
-      .finally(() => setIsLoading(false));
+    //setIsLoading(true);
+    setArticles(articlesStatick)
+    console.log(articles)
+    // menuApi
+    //   .getMenu()
+    //   .then(setArticles)
+    //   .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {

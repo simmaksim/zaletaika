@@ -1,32 +1,31 @@
-{
-    "0":{
+[
+    {
         "title": "Тренировка для маленьких",
         "content": "Несколько упражнения для самых маленьких",
         "image": "https://www.youtube.com/embed/WglwfTL0iKs"
 
     },
-    "1":{
+    {
         "title": "Тренировка для маленьких",
         "content": "Несколько упражнения для самых маленьких",
         "image": "https://www.youtube.com/embed/WglwfTL0iKs"
 
     },
-    "2":{
+    {
         "title": "Тренировка для маленьких",
         "content": "Несколько упражнения для самых маленьких",
         "image": "https://www.youtube.com/embed/WglwfTL0iKs"
 
     },
-    "3":{
+    {
         "title": "Тренировка для маленьких",
         "content": "Несколько упражнения для самых маленьких",
         "image": "https://www.youtube.com/embed/WglwfTL0iKs"
 
     },
-    "4":{
+    {
         "title": "Тренировка для маленьких",
         "content": "Несколько упражнения для самых маленьких",
         "image": "https://www.youtube.com/embed/WglwfTL0iKs"
 
-    }
-}
+    }]

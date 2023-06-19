@@ -15,6 +15,21 @@ import { doctorChatApi } from "../../api/doctorChat";
 
 const dates = require("../../openTime.json");
 
+const messagesFirst = [
+  {
+    position:"left",
+    type:"text",
+    title:"Kursat",
+    text:"Give me a message list example !",
+  },
+  {
+    position:"right",
+    type:"text",
+    title:"You",
+    text:"That's all.",
+  },
+  ]
+
 export function DoctorPage() {
   const [value, onChange] = useState(new Date());
   const [message, setMessage] = useState([]);
@@ -24,6 +39,7 @@ export function DoctorPage() {
     messages: [],
   });
   const [conversation, setConversation] = useState([]);
+  const [messages, setMessages] = useState(messagesFirst)
   const ref = useRef(null);
   console.log(selectedDates);
   const selectDateHandler = (date) => {
@@ -40,33 +56,49 @@ export function DoctorPage() {
 
   const sendMessage = async () => {
     console.log(conversationItem.id);
-    //setMessage("");
-    const response = await doctorChatApi.postMessage(conversationItem.id, {
-      content: ref.current.value,
-    });
 
-    setConversationItem((prev) => ({
-      ...prev,
-      messages: [...prev.messages, response],
-    }));
+    setMessage("");
+    const newMessage = {
+      position: "right",
+      type: "text",
+      title: "You",
+      text: ref.current.value,
+    };
+    const newMessagesList = [...messages, newMessage];
+
+    setMessages(newMessagesList);
     ref.current.value = "";
+
+    //setMessage("");
+    // const response = await doctorChatApi.postMessage(conversationItem.id, {
+    //   content: ref.current.value,
+    // });
+
+    // setConversationItem((prev) => ({
+    //   ...prev,
+    //   messages: [...prev.messages, response],
+    // }));
+    // ref.current.value = "";
   };
 
   useEffect(() => {
-    doctorChatApi.getAllConversations().then(setConversation);
+    setMessages(messagesFirst);
 
-    const interval = setInterval(() => {
-      doctorChatApi.getAllConversations().then(setConversation);
-    }, 10000);
+    //doctorChatApi.getAllConversations().then(setConversation);
 
-    return () => {
-      clearInterval(interval);
-    };
+    // const interval = setInterval(() => {
+    //   doctorChatApi.getAllConversations().then(setConversation);
+    // }, 10000);
+    //setConversation(messages);
+
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
   console.log()
   return (
     <div>
-      {/* <div className={classes.dateWrapper}>
+      <div className={classes.dateWrapper}>
         {dates.map((date) => {
           const [day, time] = date.split("'T'");
           return (
@@ -83,33 +115,36 @@ export function DoctorPage() {
             </div>
           );
         })}
-      </div> */}
+      </div>
       <div className={classes.chatWrapper}>
         <ChatList
           className="chat-list"
           onClick={onConversationClick}
-          dataSource={conversation.map(
-            ({ patientName, unreadMessagesCount, id }) => ({
-              alt: "",
-              title: patientName,
-              // unread: unreadMessagesCount,
-              id,
-            })
-          )}
+          dataSource={[
+            {
+              avatar: 'https://avatars.githubusercontent.com/u/80540635?v=4',
+              alt: 'kursat_avatar',
+              title: 'Kursat',
+              subtitle: "Why don't we go to the No Way Home movie this weekend ?",
+              date: new Date(),
+              unread: 3,
+            }
+        ]}
         />
         <MessageList
           className={classes.messageList}
           lockable={true}
           toBottomHeight={"100%"}
-          dataSource={conversationItem.messages.map(
-            ({ content, fromName, time, fromPatient }) => ({
-              position: fromPatient ? "left" : "right",
-              type: "text",
-              text: content,
-              date: new Date(time.replaceAll("'", "").slice(0, -1)),
-              title: fromName,
-            })
-          )}
+          // dataSource={conversationItem.messages.map(
+          //   ({ content, fromName, time, fromPatient }) => ({
+          //     position: fromPatient ? "left" : "right",
+          //     type: "text",
+          //     text: content,
+          //     date: new Date(time.replaceAll("'", "").slice(0, -1)),
+          //     title: fromName,
+          //   })
+          // )}
+          dataSource={messages}
           //   [
           //   {
           //     position: "left",

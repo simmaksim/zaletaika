@@ -18,25 +18,54 @@ const theme = createTheme({
   },
 });
 
+const messagesFirst = [
+  {
+    position:"left",
+    type:"text",
+    title:"Kursat",
+    text:"Give me a message list example !",
+  },
+  {
+    position:"right",
+    type:"text",
+    title:"You",
+    text:"That's all.",
+  },
+  ]
+
 export function Doctor() {
-  const [value, onChange] = useState(new Date());
+  // const [value, onChange] = useState(new Date());
   const [message, setMessage] = useState("");
   const ref = useRef(null);
   const [selectedDates, addSelectedDate] = useState([]);
+  //new 
+  const [messages, setMessages] = useState(messagesFirst)
  
 
   const sendMessage = async () => {
-    
     setMessage("");
-    const response = await patientChatApi.postMessage({
-      content: ref.current.value,
-    });
+    const newMessage = {
+      position: "right",
+      type: "text",
+      title: "You",
+      text: ref.current.value,
+    };
+    const newMessagesList = [...messages, newMessage];
 
-    setConversation((prev) => ({
-      ...prev,
-      messages: [...prev.messages, response],
-    }));
+    setMessages(newMessagesList);
     ref.current.value = "";
+
+    
+    // setMessage("");
+    // const response = await patientChatApi.postMessage({
+    //   content: ref.current.value,
+    // });
+
+    // setConversation((prev) => ({
+    //   ...prev,
+    //   messages: [...prev.messages, response],
+    // }));
+    // ref.current.value = "";
   };
 
   const selectDateHandler = (date) => {
@@ -59,20 +88,24 @@ export function Doctor() {
   });
 
   useEffect(() => {
-    patientChatApi.getConversation().then(setConversation);
-    const interval = setInterval(() => {
-      patientChatApi.getConversation().then(setConversation);
-    }, 10000);
+    setMessages(messagesFirst);
 
-    return () => {
-      clearInterval(interval);
-    };
+
+
+    // patientChatApi.getConversation().then(setConversation);
+    // const interval = setInterval(() => {
+    //   patientChatApi.getConversation().then(setConversation);
+    // }, 10000);
+
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
 
   return (
     <div>
       <h2>Ваш доктор: {conversation.employeeName}</h2>
-      {/* <div className={classes.dateWrapper}>
+      <div className={classes.dateWrapper}>
         {dates.map((date) => {
           const [day, time] = date.split("'T'");
 
@@ -90,7 +123,7 @@ export function Doctor() {
             </div>
           );
         })}
-      </div> */}
+      </div>
       {/* <Btn variant="outlined" theme={theme}>
         Записаться
       </Btn> */}
@@ -104,15 +137,16 @@ export function Doctor() {
         <MessageList
            className={classes.messageList}
          
-          dataSource={
-            conversation.messages.map(({ content, fromName, time }) => ({
-              position:
-                fromName === conversation.employeeName ? "right" : "left",
-              type: "text",
-              text: content,
-              date: new Date(time.replaceAll("'", "").slice(0, -1)),
-              title: fromName,
-            }))
+           dataSource={messages}
+          // dataSource={
+          //   conversation.messages.map(({ content, fromName, time }) => ({
+          //     position:
+          //       fromName === conversation.employeeName ? "right" : "left",
+          //     type: "text",
+          //     text: content,
+          //     date: new Date(time.replaceAll("'", "").slice(0, -1)),
+          //     title: fromName,
+          //   }))
             //   [
             //   {
             //     position: "left",
@@ -127,7 +161,7 @@ export function Doctor() {
             //     text: "That's all.",
             //   },
             // ]
-          }
+          //}
         />
         <div className={classes.chatFooter}>
           <Input
