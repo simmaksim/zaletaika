@@ -1,4 +1,4 @@
-.datetimeCont{
+/* .datetimeCont{
     height: 100%;
     width: 10%;
     background-color: rgb(236, 155, 205);
@@ -34,3 +34,53 @@
 .messageList{
     max-height: 400px;
 }
+
+.messageList div div div{
+    background-color: #FFBB69;
+} */
+
+
+
+.datetimeCont{
+    height: 100%;
+    width: 10%;
+    background-color: #FFBB69;
+    font-size: 1.2rem;
+}
+
+.datetimeCont:active{
+    height: 100%;
+    width: 10%;
+    background-color: #5C5552;
+    color: aliceblue;
+    font-size: 1.2rem;
+}
+
+.datetimeCont:hover{
+    color: aliceblue;
+    background-color: #5C5552;
+}
+
+.dateWrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    
+}
+
+.messageList{
+    max-height: 400px;
+}
+
+.messageList div div div{
+    background-color: #FFBB69;
+}
+
+.selectedItem{
+    height: 100%;
+    width: 10%;
+    background-color: #5C5552;
+    color: aliceblue;
+    font-size: 1.2rem;
+} 

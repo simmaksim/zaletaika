@@ -166,16 +166,31 @@ export function DoctorPage() {
             placeholder="Type here..."
             multiline={true}
             rightButtons={
-              <Button text={"Send"} onClick={sendMessage} title="Send" />
+              <Btn onClick={sendMessage}  variant="outlined" sx={{ backgroundColor: "#FFBB69", ":hover": {
+                backgroundColor: "#5C5552",
+                color: "aliceblue"
+              }}}>
+                Send
+              </Btn>
+              // <Button text={"Send"}  onClick={sendMessage} title="Send" style={{ backgroundColor: "#FFBB69", ":hover": {
+              //   backgroundColor: "#5C5552",
+              //   color: "aliceblue"
+              // }}}/>
             }
           />
         </div>
       </div>
-      <Btn variant="outlined">
-        <Link to="/videocall">Call to patient</Link>
+      <Btn component={Link} to="/test-video"  variant="outlined" sx={{ backgroundColor: "#FFBB69", ":hover": {
+        backgroundColor: "#5C5552",
+        color: "aliceblue"
+      }}}>
+        Call to patient
       </Btn>
-      <Btn variant="outlined">
-        <Link to="/logIn">Log out</Link>
+      <Btn component={Link} to="/test-video"  variant="outlined" sx={{ backgroundColor: "#FFBB69", ":hover": {
+        backgroundColor: "#5C5552",
+        color: "aliceblue"
+      }}}>
+        Log out
       </Btn>
     </div>
   );

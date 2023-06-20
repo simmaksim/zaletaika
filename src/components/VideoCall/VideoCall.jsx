@@ -1,4 +1,4 @@
-import { VideoChat } from "../VideoChat/VideoChat";
+import  VideoChat  from "../VideoChat/VideoChat";
 
 export function VideoCall() {
   return (

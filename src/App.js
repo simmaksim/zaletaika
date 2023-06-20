@@ -12,14 +12,24 @@ import { Menu } from "./components/Menu/Menu";
 import { Exercise } from "./components/Exersices/Exercises";
 import { Doctor } from "./components/Doctor/Doctor";
 import { VideoCall } from "./components/VideoCall/VideoCall";
-import React, { useState } from "react";
+import { VideoChat } from "./components/VideoChat/VideoChat";
+import React, { useEffect, useState } from "react";
 import { PrivateRoot } from "./components/PrivateRoot/PrivateRoot";
 import { DoctorPage } from "./components/DoctorPage/DoctorPage";
+import { TestVideo } from "./components/TestVideo";
 
 export const Context = React.createContext();
 
 function App() {
   const [doctor, isDoctor] = useState(false);
+
+  useEffect(() => {
+    const agent = window.navigator.userAgent.toLowerCase();
+    let Chrome = /chrome/.test(agent);
+    console.log(Chrome);
+    if (Chrome) isDoctor(true);
+  }, []);
+
   return (
     <main>
       <Context.Provider value={[doctor, isDoctor]}>
@@ -89,6 +99,7 @@ function App() {
                 </PrivateRoot>
               }
             />
+            <Route path="/test-video" element={<TestVideo />} />
             <Route
               path="/videocall"
               element={
@@ -121,6 +132,7 @@ function App() {
               }
               exact
             />
+            <Route path="/test-video" element={<TestVideo />} />
             <Route
               path="/tokenconfrimation"
               element={

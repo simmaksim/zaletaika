@@ -1,7 +1,7 @@
 import classes from "./Calculator.module.css";
 import { useContext, useState } from "react";
 import { Context } from "../../App";
-import { TextField } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 
 export function Calculator() {
   const [height, setHeight] = useState();
@@ -52,29 +52,40 @@ export function Calculator() {
   return (
     <div className={classes.cont}>
       <h3 className={classes.calcTitle}>Калькулятор индекса массы тела</h3>
-      <form>
+      <form style={{maxWidth: "100vh", width: "100%"}}>
        
 
         <div className={classes.wrapper}>
-          <TextField
-            variant="outlined"
-            placeholder="Height"
-            value={height}
-            onChange={IsHeightValid}
-          />
+          <Stack direction={"row"} sx={{width: "100%",  display: "flex", justifyContent: "space-between"}}>
+            <Stack spacing={2}>
+              <TextField
+                variant="outlined"
+                placeholder="Height"
+                value={height}
+                onChange={IsHeightValid}
+              />
 
-          <TextField
-            variant="outlined"
-            placeholder="Weight"
-            value={weight}
-            onChange={IsWeightValid}
-          />
-          <TextField
-            variant="outlined"
-            value={weight / (height / 100) ** 2 || ""}
-          ></TextField>
-          {!isError() && <p>{letResult(weight / (height / 100) ** 2)}</p>}
-          {isError() && <p color="Red"> Enter valid </p>}
+              <TextField
+                variant="outlined"
+                placeholder="Weight"
+                value={weight}
+                onChange={IsWeightValid}
+              />
+
+            </Stack>
+
+            <Stack>
+              {!isError() && <p>{letResult(weight / (height / 100) ** 2)}</p>}
+              {isError() && <p color="Red"> Enter valid </p>}
+
+              <TextField
+                variant="outlined"
+                value={weight / (height / 100) ** 2 || ""}
+              ></TextField>
+            </Stack>
+            
+
+          </Stack>
         </div>
       </form>
     </div>

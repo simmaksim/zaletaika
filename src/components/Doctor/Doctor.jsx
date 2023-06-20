@@ -169,13 +169,21 @@ export function Doctor() {
             placeholder="Type here..."
             multiline={true}
             rightButtons={
-              <Button text={"Send"} onClick={sendMessage} title="Send" />
+              <Btn onClick={sendMessage}  variant="outlined" sx={{ backgroundColor: "#FFBB69", ":hover": {
+                backgroundColor: "#5C5552",
+                color: "aliceblue"
+              }}}>
+                Send
+              </Btn>
             }
           />
         </div>
       </div>
-      <Btn variant="outlined">
-        <Link to="/videocall">Call to doctor</Link>
+      <Btn component={Link} to="/test-video"  variant="outlined" sx={{ backgroundColor: "#FFBB69", ":hover": {
+        backgroundColor: "#5C5552",
+        color: "aliceblue"
+      }}}>
+        <Link to="/test-video">Call to doctor</Link>
       </Btn>
     </div>
   );
