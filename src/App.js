@@ -27,7 +27,7 @@ function App() {
     const agent = window.navigator.userAgent.toLowerCase();
     let Chrome = /chrome/.test(agent);
     console.log(Chrome);
-    if (Chrome) isDoctor(true);
+    if (Chrome) isDoctor(false);
   }, []);
 
   return (

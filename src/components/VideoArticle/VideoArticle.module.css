@@ -1,6 +1,7 @@
 .articleWrapper{
     border: 2px solid black;
     height: 100%;
+    width: 30%;
     overflow: hidden;
     border-radius: 5px;
     font-family: 'Monaco', monospace;
